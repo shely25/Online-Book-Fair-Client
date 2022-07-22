@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from './Card';
+import './Card.css'
 
 const Stall = () => {
     const [stalls, setStalls] = useState([])
@@ -16,12 +17,12 @@ const Stall = () => {
     return (
         <div>
             <h1 className='text-2xl mt-16 text-center' style={{ color: 'skyblue' }}>Explore our wide selection of bookstalls</h1>
-            <div className='grid grid-cols-4 m-12'>
+            <div className='cards grid gap-x-20 grid-cols-4 m-12'>
                 {
                     stalls.slice(0, 3).map(stall => <Card stall={stall}></Card>)
                 }
-                <div className='flex items-center text-2xl mx-auto'>
-                    <Link to='/Stalls'>See More -</Link>
+                <div className='see '>
+                    <Link to='/Stalls'>See More</Link>
                 </div>
 
             </div>

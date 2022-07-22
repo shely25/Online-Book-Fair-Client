@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 import SocialLogin from './SocialLogin';
+import './css.css'
 
 const LogIn = () => {
     const [
@@ -34,7 +35,7 @@ const LogIn = () => {
         navigate(from, { replace: true });
     }
     return (
-        <div>
+        <div className='login'>
             <div className='text-center'>
                 <h1 className='my-8 text-2xl font-medium'>Log In</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -44,7 +45,7 @@ const LogIn = () => {
                     <br />
                     <input className='btn' type="submit" value="Log In" />
                 </form>
-                <p className='text-center my-2'>Are You New Here?<Link to='/register' className='text-blue-300'>Please register</Link></p>
+                <p className='text-center my-2'>Are You New Here?<Link to='/register' className='text-blue-800'>Please register</Link></p>
 
                 {errorElement2}
                 <SocialLogin></SocialLogin>

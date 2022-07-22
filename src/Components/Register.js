@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import SocialLogin from './SocialLogin';
+import './css.css'
 
 const Register = () => {
     const navigate = useNavigate();
@@ -53,7 +54,7 @@ const Register = () => {
         console.log(user)
     }
     return (
-        <div className='text-center'>
+        <div className='register text-center'>
             <h1 className='my-8 text-2xl font-medium'>Register</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input type="text" placeholder="Your Name" className="input input-bordered w-full max-w-xs " {...register("name")} />
@@ -65,7 +66,7 @@ const Register = () => {
                 <input className='btn' type="submit" value="Register" />
             </form>
             {errorElement1}
-            <p className='text-center my-2'>Already have an account?<Link to='/LogIn' className='text-blue-300'>Please Log In</Link></p>
+            <p className='text-center my-2'>Already have an account?<Link to='/LogIn' className='text-blue-600'>Please Log In</Link></p>
             <SocialLogin></SocialLogin>
         </div>
     );

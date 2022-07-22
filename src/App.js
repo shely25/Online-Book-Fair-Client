@@ -6,6 +6,10 @@ import Register from './Components/Register';
 import LogIn from './Components/LogIn';
 import Header from './Components/Header';
 import Users from './Users'
+import Stalls from './Components/Stalls';
+import CreateStall from './Components/CreateStall';
+import Books from './Components/Books';
+import Purchase from './Components/Purchase'
 
 function App() {
 
@@ -26,6 +30,10 @@ function App() {
         <Route path='/Register' element={<Register />}></Route>
         <Route path='/Login' element={<LogIn></LogIn>}></Route>
         <Route path='/users' element={<Users />}></Route>
+        <Route path='/stalls' element={<Stalls />}></Route>
+        <Route path='/createstall' element={<CreateStall />}></Route>
+        <Route path='/books/:id' element={<Books />}></Route>
+        <Route path='/purchase' element={<Purchase />}></Route>
       </Routes>
     </div>
   );

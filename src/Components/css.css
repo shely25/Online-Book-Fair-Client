@@ -1,0 +1,14 @@
+.login {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.192), rgba(255, 255, 255, 0.089)), url('../Images/login.jpg');
+    height: 100vh;
+    margin-top: -100px;
+    padding-top: 100px;
+    background-position: center;
+}
+
+.register {
+    background-image: url('../Images/register.jpg');
+    height: 100vh;
+    padding-top: 100px;
+    margin-top: -100px;
+}

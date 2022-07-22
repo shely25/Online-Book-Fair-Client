@@ -1,4 +1,30 @@
 .card img {
+    width: 80%;
+    height: 150px;
+    margin: auto;
+}
+
+.see {
+    background-image: url(../Images/see.jpg);
     width: 200px;
-    height: 200px;
+    color: white;
+    font-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    border: 1px solid white;
+    padding: 10px;
+    box-shadow: 5px 5px gainsboro;
+    padding: 30px;
+}
+
+.name {
+    text-align: center;
+    color: orange;
+    margin-top: 10px;
 }
