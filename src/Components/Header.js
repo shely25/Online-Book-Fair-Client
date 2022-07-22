@@ -1,7 +1,14 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../firebase.init';
 
 const Header = () => {
+    const [user] = useAuthState(auth)
+    const handleSignout = () => {
+        signOut(auth)
+    }
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -12,19 +19,64 @@ const Header = () => {
                         </label>
                         <ul tabindex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to="/home">Home</Link></li>
-                            <li><Link to="/registration">register</Link></li>
-                            <li><Link to="/login">Login</Link></li>
+                            {
+                                user ?
+                                    <>
+                                        <li>
+                                            <button className='border-0 text-black'>{user?.displayName}</button>
+                                        </li>
+                                        <li>
+                                            <button className='border-0'>{user.email}</button>
+                                        </li>
+                                        <li>
+                                            <button className='border-0' onClick={handleSignout}>Sign Out</button>
+                                        </li>
+                                    </>
+                                    :
+                                    <>
+                                        <li>
+                                            <Link to='/login'>Log In</Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/Rsegister'>Register</Link>
+                                        </li>
+                                    </>
+
+                            }
                             <li><Link to="/users">Users</Link></li>
 
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-xl">Book Bari</Link>
+                    <Link to='/' className="btn btn-ghost normal-case text-xl">Boi Bari
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
                         <li><Link to="/home">Home</Link></li>
-                        <li><Link to="/Register">Register</Link></li>
-                        <li><Link to="/Login">Login</Link></li>
+                        {
+                            user ?
+                                <>
+                                    <li>
+                                        <button className='border-0'>{user?.displayName}</button>
+                                    </li>
+                                    <li>
+                                        <button className='border-0'>{user.email}</button>
+                                    </li>
+                                    <li>
+                                        <button className='border-0' onClick={handleSignout}>Sign Out</button>
+                                    </li>
+                                </>
+                                :
+                                <>
+                                    <li>
+                                        <Link to='/login'>Log In</Link>
+                                    </li>
+                                    <li>
+                                        <Link to='/Register'>Register</Link>
+                                    </li>
+                                </>
+
+                        }
                         <li><Link to="/users">Users</Link></li>
                     </ul>
                 </div>

@@ -28,7 +28,7 @@ const Register = () => {
     const onSubmit = async data => {
         console.log(data)
         await createUserWithEmailAndPassword(data.email, data.password)
-        await updateProfile({ displayName: data.Name })
+        await updateProfile({ displayName: data.name })
         const url = 'http://localhost/'
         fetch(url, {
             method: 'POST',
