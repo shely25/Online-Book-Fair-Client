@@ -14,14 +14,23 @@ const Books = () => {
     }, [])
     const Book = books.find(book => book.id == id)
     const BooksNames = Book?.Books.split(',')
-    console.log(BooksNames)
-    const [cart, setCart] = useState([])
+    // console.log(BooksNames)
+    const key = 'orders'
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem(key)) || [])
     const handleCard = id => {
         //console.log(BooksNames[id])
         const newCart = [...cart, BooksNames[id]];
         setCart(newCart)
     }
-    console.log(cart)
+    localStorage.setItem('orders', JSON.stringify(cart))
+    let orders = []
+    orders = localStorage.getItem('orders')
+    orders = JSON.parse(orders)
+    console.log(orders)
+    const clear = () => {
+        localStorage.clear()
+        window.location.reload()
+    }
     return (
         <div className='forgrid'>
             <div className='mx-24 my-5'>
@@ -57,14 +66,15 @@ const Books = () => {
                     </thead>
                     <tbody>
                         {
-                            cart?.map((user, index) => <tr>
+                            orders?.map((user, index) => <tr>
                                 <th>{index + 1}</th>
-                                <td>{cart[index]}</td>
+                                <td>{orders[index]}</td>
                             </tr>)
                         }
                     </tbody>
                 </table>
                 <button className='btn mt-5 btn-primary'><Link to='/purchase'>Purchase</Link></button>
+                <button onClick={clear} className='btn mt-5 btn-primary ml-5'>Clear Orders</button>
             </div>
         </div>
 

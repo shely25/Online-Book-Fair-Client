@@ -1,6 +1,7 @@
 .login {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.192), rgba(255, 255, 255, 0.089)), url('../Images/login.jpg');
+    background-image: linear-gradient(rgba(255, 255, 255, 0.11), rgba(0, 0, 0, 0.541)), url('../Images/login.jpg');
     height: 100vh;
+    background-size: cover;
     margin-top: -100px;
     padding-top: 100px;
     background-position: center;
@@ -9,6 +10,7 @@
 .register {
     background-image: url('../Images/register.jpg');
     height: 100vh;
+    background-size: cover;
     padding-top: 100px;
     margin-top: -100px;
 }

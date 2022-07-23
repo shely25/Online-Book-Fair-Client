@@ -1,13 +1,39 @@
 import { signOut } from 'firebase/auth';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../firebase.init';
 
 const Header = () => {
+    const [users, setUsers] = useState([])
+    useEffect(() => {
+        fetch('http://localhost/get.php')
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [])
     const [user] = useAuthState(auth)
     const handleSignout = () => {
         signOut(auth)
+    }
+    // console.log(users)
+    let admin = 0
+    if (user) {
+        let search = user?.email
+        const result = users?.find(r => r?.email == search)
+        const role = result?.Role
+        console.log(role)
+        if (role == 'admin') {
+            sessionStorage.setItem('role', JSON.stringify(role))
+            admin = 1
+        }
+        else {
+            sessionStorage.setItem('role', JSON.stringify(role))
+
+        }
+
+    }
+    else {
+        sessionStorage.clear()
     }
     return (
         <div>
@@ -19,6 +45,14 @@ const Header = () => {
                         </label>
                         <ul tabindex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to="/home">Home</Link></li>
+                            {
+                                admin ?
+                                    <>
+                                        <li><Link to="/createstall">Create Stall</Link></li>
+                                        <li><Link to="/createadmin">Create Admin</Link></li></>
+                                    :
+                                    <></>
+                            }
                             {
                                 user ?
                                     <>
@@ -53,6 +87,14 @@ const Header = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
                         <li><Link to="/home">Home</Link></li>
+                        {
+                            admin ?
+                                <>
+                                    <li><Link to="/createstall">Create Stall</Link></li>
+                                    <li><Link to="/createadmin">Create Admin</Link></li></>
+                                :
+                                <></>
+                        }
                         {
                             user ?
                                 <>

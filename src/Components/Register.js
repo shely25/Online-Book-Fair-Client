@@ -63,6 +63,8 @@ const Register = () => {
                 <br />
                 <input type="text" placeholder="Password" className="input input-bordered w-full max-w-xs my-5" {...register("password")} />
                 <br />
+                <input type="text" value='user' className="input input-bordered w-full max-w-xs my-5" {...register("Role")} />
+                <br />
                 <input className='btn' type="submit" value="Register" />
             </form>
             {errorElement1}
