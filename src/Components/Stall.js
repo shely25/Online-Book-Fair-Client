@@ -17,7 +17,7 @@ const Stall = () => {
     return (
         <div>
             <h1 className='text-2xl mt-16 text-center' style={{ color: 'skyblue' }}>Explore our wide selection of bookstalls</h1>
-            <div className='cards grid gap-x-20 grid-cols-4 m-12'>
+            <div className='cards grid gap-x-20 lg:grid-cols-4 m-12'>
                 {
                     stalls.slice(0, 3).map(stall => <Card stall={stall}></Card>)
                 }

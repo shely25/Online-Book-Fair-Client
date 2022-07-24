@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../firebase.init';
+import Cookies from 'js-cookie';
 
 const Header = () => {
     const [users, setUsers] = useState([])
@@ -17,23 +18,30 @@ const Header = () => {
     }
     // console.log(users)
     let admin = 0
+    let u = 0
+    let ltime
     if (user) {
         let search = user?.email
         const result = users?.find(r => r?.email == search)
         const role = result?.Role
         console.log(role)
+        ltime = sessionStorage?.getItem('time')
+        ltime = JSON.parse(ltime)
         if (role == 'admin') {
-            sessionStorage.setItem('role', JSON.stringify(role))
+            // sessionStorage.setItem('role', JSON.stringify(role))
+            Cookies.set('role', 'admin')
             admin = 1
+            u = 0;
         }
         else {
-            sessionStorage.setItem('role', JSON.stringify(role))
-
+            //sessionStorage.setItem('role', JSON.stringify(role))
+            Cookies.set('role', 'user')
+            u = 1
         }
-
     }
     else {
-        sessionStorage.clear()
+        //sessionStorage.clear()
+        Cookies.remove('role')
     }
     return (
         <div>
@@ -54,6 +62,13 @@ const Header = () => {
                                     <></>
                             }
                             {
+                                u ?
+                                    <li><Link to="/addreview">Add Review</Link></li>
+
+                                    :
+                                    <></>
+                            }
+                            {
                                 user ?
                                     <>
                                         <li>
@@ -61,6 +76,9 @@ const Header = () => {
                                         </li>
                                         <li>
                                             <button className='border-0'>{user.email}</button>
+                                        </li>
+                                        <li>
+                                            <Link to='/myprofile'>My Profile</Link>
                                         </li>
                                         <li>
                                             <button className='border-0' onClick={handleSignout}>Sign Out</button>
@@ -96,6 +114,13 @@ const Header = () => {
                                 <></>
                         }
                         {
+                            u ?
+                                <li><Link to="/addreview">Add Review</Link></li>
+
+                                :
+                                <></>
+                        }
+                        {
                             user ?
                                 <>
                                     <li>
@@ -103,6 +128,12 @@ const Header = () => {
                                     </li>
                                     <li>
                                         <button className='border-0'>{user.email}</button>
+                                    </li>
+                                    <li>
+                                        <button className='border-0'>Log in Time: {ltime}</button>
+                                    </li>
+                                    <li>
+                                        <Link to='/myprofile'>My Profile</Link>
                                     </li>
                                     <li>
                                         <button className='border-0' onClick={handleSignout}>Sign Out</button>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const CreateStall = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         console.log(data)
         const url = 'http://localhost/postStall.php'
@@ -17,6 +17,7 @@ const CreateStall = () => {
             .then(data => {
                 console.log('Success:', data);
             })
+        reset()
     };
     return (
         <div className='text-center'>

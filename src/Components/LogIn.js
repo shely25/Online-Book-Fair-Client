@@ -32,6 +32,9 @@ const LogIn = () => {
         signInWithEmailAndPassword(data.email, data.password);
     }
     if (user) {
+        const y = new Date().toLocaleTimeString()
+        console.log(y)
+        sessionStorage.setItem('time', JSON.stringify(y))
         navigate(from, { replace: true });
     }
     return (

@@ -13,6 +13,9 @@ import Purchase from './Components/Purchase'
 import RequireAuth from './Components/RequireAuth';
 import Footer from './Components/Footer';
 import CreateAdmin from './Components/CreateAdmin';
+import MyProfile from './Components/MyProfile';
+import NotFound from './Components/NotFound'
+import AddReview from './Components/AddReview';
 
 function App() {
 
@@ -36,7 +39,10 @@ function App() {
         <Route path='/stalls' element={<Stalls />}></Route>
         <Route path='/createstall' element={<CreateStall />}></Route>
         <Route path='/createadmin' element={<CreateAdmin />}></Route>
+        <Route path='/myprofile' element={<MyProfile />}></Route>
         <Route path='/books/:id' element={<Books />}></Route>
+        <Route path='/addreview' element={<AddReview />}></Route>
+        <Route path='/*' element={<NotFound />}></Route>
         <Route path='/purchase' element={<RequireAuth><Purchase /></RequireAuth>}></Route>
       </Routes>
       <Footer></Footer>
